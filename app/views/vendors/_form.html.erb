@@ -1,0 +1,26 @@
+<!--reference http://railscasts.com/episodes/184-formtastic-part-1
+& http://railscasts.com/episodes/185-formtastic-part-2 accesed 21/11/12-->
+<div class="wedding_planner_form">
+  <%= semantic_form_for @vendor do |f| %>
+      <%= f.inputs :name => "Basic information" do %>
+          <p class="required">*required fields</p>
+          <br/>
+          <%= f.input :login_name, :hint => "Login name has to be unique" %>
+          <%= f.input :password, :hint => "Password has to unique and contain 6-15 characters" %>
+          <%= f.input :password_confirmation, :hint => "Please re-enter the password", :required => true %>
+          <%= f.input :company_name %>
+          <%= f.input :email %>
+      <% end %>
+      <br/>
+      <%= f.inputs :name => "Billing address" do %>
+          <%= f.input :billing_address_line1, :label => "Line 1" %>
+          <%= f.input :billing_address_line2, :label => "Line 2" %>
+          <%= f.input :billing_address_city, :label => "City" %>
+          <%= f.input :billing_address_postcode, :label => "Postcode", :as => :select, :collection => ["1", "2", "3", "4", "5", "6", "6W", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "20", "22", "24"] %>
+          <%= f.input :billing_address_county, :label => "County", :include_blank => false, :as => :select, :collection => ["Antrim", "Armagh", "Carlow", "Cavan", "Clare", "Cork", "Down", "Dublin", "Fermanagh", "Kerry", "Kilkenny", "Leitrim", "Laois", "Limerick", "Longfort", "Mayo", "Navan", "Monaghan", "Offaly", "Roscommon", "Sligo", "Tipperary", "Tyrone", "Waterford", "Westmeath", "Wexford", "Wicklow", "Tyrone"] %>
+      <% end %>
+      <%= f.actions do %>
+          <%= f.action :submit, :as => :button, :label => "Submit" %>
+      <% end %>
+  <% end %>
+</div>

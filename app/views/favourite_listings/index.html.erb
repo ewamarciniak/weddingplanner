@@ -1,0 +1,70 @@
+<div class="external_wedding_planner_form">
+  <h1>Favourite listings</h1>
+
+  <% if notice %>
+      <p class="notification notice">
+        <%= notice %>
+      </p>
+  <% end %>
+
+  <% if alert %>
+      <p class="notification alert">
+        <%= alert %>
+      </p>
+  <% end %>
+
+  <% if (@favourite_listings) %>
+      <% if (@favourite_listings.empty?) %>
+          <p>You haven't added any listings to your Favourites yet.</p>
+          <%= link_to "Visit wedding directory", {:controller => "directory"} %>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+      <% else %>
+          <div id="box2">
+            <%= form_tag directory_path, :method => 'get' do %>
+                <p>
+                  <%= text_field_tag :search_query, params[:search_query], :value => "by keyword" %>
+                  <%= submit_tag "Search", :title => nil, :id => "button" %>
+                </p>
+            <% end %>
+          </div>
+          <% @favourite_listings.each do |favourite_listing| %>
+              <%= link_to (favourite_listing.listing) do %>
+                  <table class="entry">
+                    <tr>
+                      <td rowspan="4"><%= image_tag (favourite_listing.listing.picture.url(:medium)) %></td>
+                      <th class="business_directory"><p><%= favourite_listing.listing.business_name %></th>
+
+                      <td class="votes" id="num">
+                        <%= pluralize favourite_listing.listing.sum_of_votes, "vote" %>  </td>
+                    </tr>
+                    <tr>
+                      <td class="category"><%= favourite_listing.listing.category %></td>
+                      <td class="votes" id="up">
+
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="2"><%= favourite_listing.listing.address %></td>
+                    </tr>
+                    <tr>
+                      <td colspan="2"><%= button_to 'Remove from Favourites', favourite_listing, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+                    </tr>
+
+                  </table>
+              <% end %>
+          <% end %>
+      <% end %>
+  <% else %>
+      <p>There are no listings in the database.</p>
+      <br/>
+      <br/>
+  <% end %>
+</div>
+
+
+

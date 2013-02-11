@@ -1,0 +1,24 @@
+<div class="wedding_planner_form" xmlns="http://www.w3.org/1999/html">
+  <% if notice %>
+      <p class="notification notice">
+        <%= notice %>
+      </p>
+  <% end %>
+  <% if alert %>
+      <p class="notification alert">
+        <%= alert %>
+      </p>
+  <% end %>
+  <p>
+
+  <h2>Description:</h2>
+  <%= @todo.description %>
+  </p>
+  <p>
+
+  <h2>Completed:</h2>
+  <%= @todo.completed? ? 'yes' : 'no' %>
+  </p>
+  <%= link_to 'Edit', edit_todo_path(@todo) %> |
+  <%= link_to 'Back', todos_path %>
+</div>

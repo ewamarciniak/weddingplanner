@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Listing:</b>
+  <%= @favourite_listing.listing_id %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @favourite_listing.user_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_favourite_listing_path(@favourite_listing) %> |
+<%= link_to 'Back', favourite_listings_path %>

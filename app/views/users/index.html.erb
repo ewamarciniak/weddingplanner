@@ -1,0 +1,66 @@
+<div class="external_wedding_planner_form">
+  <h1>Listing users</h1>
+<%# START:notifications %>
+  <% if notice %>
+      <p class="notification notice">
+        <%= notice %>
+      </p>
+  <% end %>
+
+  <% if alert %>
+      <p class="notification alert">
+        <%= alert %>
+      </p>
+  <% end %>
+<%# END:notifications %>
+  <div id="entire_table">
+    <table>
+
+      <tr class="row">
+        <th>Id</th>
+        <th> Login name</th>
+        <th>First name</th>
+        <th> Last name</th>
+        <th>Email</th>
+        <th>Vendor</th>
+        <th>Admin</th>
+        <th>Actions</th>
+      </tr>
+
+      <% @users.each do |user| %>
+          <tr class="row">
+            <td class="row" rowspan="3"><%= user.id %></td>
+            <td class="row" rowspan="3"><%= user.login_name %> </td>
+            <td class="row" rowspan="3"><%= user.first_name %> </td>
+            <td class="row" rowspan="3"><%= user.last_name %> </td>
+            <td class="row" rowspan="3"><%= user.email %> </td>
+            <% if user.type=="Vendor" %>
+                <td class="row" rowspan="3"><%= user.type %> </td>
+            <% else %>
+                <td class="row" rowspan="3">Private</td>
+            <% end %>
+            <td class="row" rowspan="3"><%= user.admin? ? 'yes' : 'no' %></td>
+            <td class="tripple_row">
+              <%= link_to 'Show', user %>
+            </td>
+          </tr>
+          <tr class="row">
+            <td class="tripple_row">
+              <%= link_to 'Edit', edit_user_path(user) %>
+            </td>
+          </tr>
+          <tr class="row">
+            <td class="tripple_row">
+              <%= link_to 'Destroy', user,
+                          confirm: 'Are you sure?',
+                          method: :delete %>
+            </td>
+          </tr>
+      <% end %>
+    </table>
+  </div>
+  <br/>
+
+  <p><%= will_paginate @orders %></p>
+  <%= link_to 'New User', new_user_path %>
+</div>

@@ -1,0 +1,43 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  login_name: MyString
+  first_name: MyString
+  last_name: MyString
+  company_name: MyString
+  email: MyString
+  password: MyString
+  password_digest: MyString
+  billing_address_line1: MyString
+  billing_address_line2: MyString
+  billing_address_city: MyString
+  billing_address_postcode: 1
+  billing_address_county: MyString
+  shipping_address_line1: MyString
+  shipping_address_line2: MyString
+  shipping_address_city: MyString
+  shipping_address_postcode: 1
+  shipping_address_county: MyString
+  vendor: false
+  admin: false
+
+two:
+  login_name: MyString
+  first_name: MyString
+  last_name: MyString
+  company_name: MyString
+  email: MyString
+  password: MyString
+  password_digest: MyString
+  billing_address_line1: MyString
+  billing_address_line2: MyString
+  billing_address_city: MyString
+  billing_address_postcode: 1
+  billing_address_county: MyString
+  shipping_address_line1: MyString
+  shipping_address_line2: MyString
+  shipping_address_city: MyString
+  shipping_address_postcode: 1
+  shipping_address_county: MyString
+  vendor: false
+  admin: false

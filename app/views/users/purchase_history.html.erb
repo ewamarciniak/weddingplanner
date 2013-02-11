@@ -1,0 +1,49 @@
+<div class="wedding_planner_form">
+  <h1>Past Purchases</h1>
+
+
+  <% if @orders.present? %>
+      <p>Your past orders were: </p>
+      <table class="outer">
+        <tr>
+          <th>Date</th>
+          <th class="title">Title</th>
+          <th class="issue">Issue</th>
+          <th class="quantity">Quantity</th>
+          <th class="price">Price</th>
+          <th>Total Price</th>
+        </tr>
+
+        <% @orders.each do |order| %>
+            <tr>
+              <td><%= order.created_at.to_date %></td>
+              <td colspan="4">
+                <table>
+
+                  <% order.line_items.each do |item| %>
+
+                      <tr>
+                        <td class="title"><%= item.product.title %></td>
+                        <td class="issue"><%= item.product.issue %></td>
+                        <td class="quantity"><%= item.quantity %></td>
+                        <td class="price"><%= number_to_currency(item.total_price, {:unit => "&euro;", :separator => ".", :delimiter => ","}) %></td>
+                      </tr>
+                  <% end %>
+                </table>
+
+
+              </td>
+              <td><%= number_to_currency(order.total_price, {:unit => "&euro;", :separator => ".", :delimiter => ","}) %></td>
+            </tr>
+        <% end %>
+      </table>
+  <% else %>
+      <p>You haven't placed any orders yet.</p>
+      <%= link_to "Visit magazine store", {:controller => "store"} %>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+  <% end %>
+</div>

@@ -1,0 +1,122 @@
+<div class="wedding_planner_form">
+  <h1>Account</h1>
+<%# START:notifications %>
+  <% if notice %>
+      <p class="notification notice">
+        <%= notice %>
+      </p>
+  <% end %>
+
+  <% if alert %>
+      <p class="notification alert">
+        <%= alert %>
+      </p>
+  <% end %>
+<%# END:notifications %>
+  <table class="show">
+    <% if current_user.admin %>
+        <tr>
+          <th colspan="2">ID:</th>
+          <td><%= @user.id %></td>
+        </tr>
+    <% end %>
+    <tr>
+      <th colspan="2">Login name:</th>
+      <td><%= @user.login_name %></td>
+    </tr>
+
+    <tr>
+      <th colspan="2">First name:</th>
+      <td><%= @user.first_name %></td>
+    </tr>
+
+    <tr>
+      <th colspan="2">Last name:</th>
+      <td><%= @user.last_name %></td>
+    </tr>
+    <% unless current_user.type =="Vendor" %>
+        <tr>
+          <th colspan="2">Wedding date:</th>
+          <td><%= @user.wedding_date %></td>
+        </tr>
+    <% end %>
+    <% if current_user.type =="Vendor" %>
+        <tr>
+          <th colspan="2">Company name:</th>
+          <td><%= @user.company_name %></td>
+        </tr>
+    <% end %>
+
+    <tr>
+      <th colspan="2">Email:</th>
+      <td><%= @user.email %></td>
+    </tr>
+
+    <tr>
+      <th rowspan="5">Billing Address :</th>
+      <th class="left_border_visible">Line 1:</th>
+      <td><%= @user.billing_address_line1 %> </td>
+    </tr>
+
+    <tr>
+      <th class="left_border_visible">Line 2:</th>
+      <td><%= @user.billing_address_line2 %></td>
+    </tr>
+
+    <tr>
+      <th class="left_border_visible">City:</th>
+      <td><%= @user.billing_address_city %></td>
+    </tr>
+
+    <tr>
+      <th class="left_border_visible">Postcode:</th>
+      <td><%= @user.billing_address_postcode %></td>
+    </tr>
+    <tr>
+      <th class="left_border_visible">County:</th>
+      <td><%= @user.billing_address_county %></td>
+    </tr>
+
+    <tr>
+      <th rowspan="5">Shipping Address</th>
+      <th class="left_border_visible">Line 1:</th>
+      <td><%= @user.shipping_address_line1 %></td>
+    </tr>
+
+    <tr>
+      <th class="left_border_visible">Line 2:</th>
+      <td><%= @user.shipping_address_line2 %></td>
+    </tr>
+
+    <tr>
+      <th class="left_border_visible">City:</th>
+      <td><%= @user.shipping_address_city %></td>
+    </tr>
+
+    <tr>
+      <th class="left_border_visible">Postcode:</th>
+      <td><%= @user.shipping_address_postcode %></td>
+    </tr>
+
+    <tr>
+      <th class="left_border_visible">County:</th>
+      <td><%= @user.shipping_address_county %></td>
+    </tr>
+
+    <% if current_user.admin %>
+        <tr>
+          <th colspan="2">Vendor:</th>
+          <td><%= @user.vendor %></td>
+        </tr>
+
+        <tr>
+          <th colspan="2">Admin:</th>
+          <td><%= @user.admin %></td>
+        </tr>
+    <% end %>
+  </table>
+
+
+  <%= link_to 'Edit', edit_user_path(@user) %> |
+  <%= link_to 'Back', users_path %>
+</div>

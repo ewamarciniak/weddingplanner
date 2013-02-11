@@ -1,0 +1,3 @@
+<%= sprintf("%2d x %s %s,",
+            line_item.quantity,
+            truncate(line_item.product.title, length: 50), line_item.product.issue) %>

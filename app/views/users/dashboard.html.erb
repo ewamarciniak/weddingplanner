@@ -1,0 +1,52 @@
+<div class="wedding_planner_form" xmlns="http://www.w3.org/1999/html">
+  <h1>Welcome
+    <% if current_user.first_name? %>
+        <%= current_user.first_name %><%= "!" %>
+    <% else %>
+        <%= "!" %>
+    <% end %>
+  </h1>
+  <% if current_user.wedding_date!=nil %>
+      <p>Your wedding date is: <%= @wedding_date %></p>
+      <p class="emphasis_blue"><%= date_distance current_user.wedding_date %></p>
+  <%else%>
+     <p><%= @now %></p>
+  <% end %>
+  <br/>
+  <br/>
+  <table class="dashboard">
+    <tr>
+      <th>My Guest List</th>
+    </tr>
+    <tr>
+      <td>Invited: <%= pluralize(@total_invited, "guest") %> </td>
+    </tr>
+    <tr>
+      <td>Accepted: <%= pluralize(@total_accepted, "guest") %></td>
+    </tr>
+    <tr>
+      <td>Declined:  <%= pluralize(@total_declined, "guest") %></td>
+    </tr>
+  </table>
+  <table class="dashboard">
+    <tr>
+      <th>My To-dos</th>
+    </tr>
+    <tr>
+      <td>To do: <%= pluralize(@total_todos, "tasks") %></td>
+    </tr>
+    <tr>
+      <td>Done: <%= pluralize(@total_done, "tasks") %></td>
+    </tr>
+  </table>
+  <table class="dashboard">
+    <tr>
+      <th>My budget</th>
+    </tr>
+    <tr>
+      <td>Coming Soon!</td>
+    </tr>
+
+
+  </table>
+</div>

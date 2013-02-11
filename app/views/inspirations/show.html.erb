@@ -1,0 +1,43 @@
+<div class="wedding_planner_form">
+  <h1>Inspiration</h1>
+
+  <% if notice %>
+      <p class="notification notice">
+        <%= notice %>
+      </p>
+  <% end %>
+
+  <% if alert %>
+      <p class="notification alert">
+        <%= alert %>
+      </p>
+  <% end %>
+  <h2> <%= @inspiration.title %></h2>
+  <p>
+    <%= image_tag @inspiration.image.url(:large) %>
+  </p>
+  <p>
+    <b>Your notes:</b>
+  </p>
+  <p>
+    <%= @inspiration.notes %>
+  </p>
+
+  <p>
+    <b>Website URL:</b>
+  </p>
+  <p>
+    <%= @inspiration.website_url%>
+  </p>
+
+  <%= link_to 'Edit', edit_inspiration_path(@inspiration) %> |
+  <%= link_to 'Back', inspirations_path %>
+
+</div>
+
+
+
+
+
+
+

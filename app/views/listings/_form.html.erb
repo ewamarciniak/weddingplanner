@@ -1,0 +1,45 @@
+<div class="wedding_planner_form">
+  <% if notice %>
+      <p class="notification notice">
+        <%= notice %>
+      </p>
+  <% end %>
+
+  <% if alert %>
+      <p class="notification alert">
+        <%= alert %>
+      </p>
+  <% end %>
+  <%= form_for(@listing) do |f| %>
+      <% if @listing.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@listing.errors.count, "error") %>
+              prohibited this order from being saved:</h2>
+
+            <ul>
+              <% @listing.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+      <% end %>
+
+  <%= semantic_form_for @listing do |f| %>
+      <%= f.inputs do %>
+          <%= f.file_field :picture %>
+          <%= f.input :business_name %>
+          <%= f.input :description %>
+          <%= f.input :category, :label =>"Business category", :as=>:select, :collection =>[ "Venue", "Flowers", "Photographer", "Wedding Gowns/Groom attire", "Hair & Make up", "Stationary", "Wedding Car Hire", "Band"], prompt: 'Select a business category' %>
+          <%= f.input :phone_number %>
+          <%= f.input :fax_number %>
+          <%= f.input :email %>
+          <%= f.input :website %>
+          <%= f.input :address %>
+      <% end %>
+
+      <%= f.actions do %>
+          <%= f.action :submit, :as => :input %>
+      <% end %>
+  <% end %>
+</div>

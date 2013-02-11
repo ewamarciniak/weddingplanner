@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>WeddingPlanner</title>
+  <%= stylesheet_link_tag 'application' %>
+  <!--[if IE 6]><%= stylesheet_link_tag 'ie6' %><![endif]-->
+  <!--[if IE 7]><%= stylesheet_link_tag 'ie7' %><![endif]-->
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+
+</head>
+<body class='<%= controller.controller_name %>'>
+<div id="container">
+  <%= image_tag("zlotetlo4.jpg", :id => "bg") %>
+  <div id="container_center">
+    <div id="banner">
+      <div id="banner_left">
+        <%= link_to(
+                    image_tag("logo.png",
+                              alt: "Eternally Yours | Your Wedding Planner",
+                              name: "insert_logo",
+                              id: "insert_logo", src: "/assets/images/logo.png",
+                              :size => '360x100'),
+                    users_url,
+                    title: "Dashboard") %>
+      </div>
+      <div id="banner_right">
+        <% if current_user %>
+            <p> You are logged in as <%= current_user.login_name %> (<%= current_user.total_votes %>)</p>
+            <%= link_to 'Logout', logout_path, :method => :delete %>
+        <% else %>
+            <%= link_to "Login", login_path %> |
+            <%= link_to "Register", new_user_path %>
+        <% end %>
+        <div id="searchbox">
+          <% form_tag users_path, :method => 'get' do %>
+              <p>
+                <%= text_field_tag :search_query, params[:search_query], :value => "by keyword" %>
+                <%= submit_tag "Search", :title => nil, :id => "button" %>
+              </p>
+          <% end %>
+        </div>
+      </div>
+      <div id="menu">
+        <ul id="navigation">
+          <li> <%= link_to "Home", {:controller => "site", :action => "index"}, :class => "#{'selected' if @tab=='home'}" %></li>
+          <li> <%= link_to "Wedding Directory", {:controller => "directory"}, :class => "#{'selected' if @tab=='directory'}" %>
+            <!--<ul>
+              <li><%= link_to "Venues", "#" %></li>
+              <li><%= link_to "Flowers", "#" %></li>
+              <li><%= link_to "Photographers", "#" %></li>
+              <li><%= link_to "Wedding Gowns", "#" %></li>
+              <li><%= link_to "Groom Attire", "#" %></li>
+              <li><%= link_to "Hair & Make up", "#" %></li>
+              <li><%= link_to "Stationary", "#" %></li>
+              <li><%= link_to "Wedding Car Hire", "#" %></li>
+              <li><%= link_to "Bands", "#" %></li>
+            </ul>-->
+          </li>
+          <li> <%= link_to "Planning Tools", {:controller => "users", :action => "dashboard"}, :class => "#{'selected' if @tab=='dashboard' or @tab=='guestlist' or @tab=='account' or @tab=='purchases' or @tab=='todos' or @tab=='favourites'}" %></li>
+          <li> <%= link_to "Forum", {:controller => "site", :action => "coming_soon"}, :class => "#{'selected' if @tab=='forum'}" %></li>
+          <li> <%= link_to "Magazine Store", {:controller => "store"}, :class => "#{'selected' if @tab=='store'}" %></li>
+          <li> <%= link_to "FAQ", {:controller => "site", :action => "faq"}, :class => "#{'selected' if @tab=='faq'}" %></li>
+        </ul>
+      </div>
+    </div>
+    <div id="columns">
+      <div id="side">
+        <% if current_user %>
+            <% if current_user.admin %>
+                <%= link_to 'Admin Dashboard', {:controller => "admin", :action => "index"}, :class => "#{'selected' if @tab=='admindashboard'}" %>
+                <br/>
+                <%= link_to 'All Users', users_path, :class => "#{'selected' if @tab=='users'}" %>
+                <br/>
+                <%= link_to 'Vendors', vendors_path, :class => "#{'selected' if @tab=='vendors'}" %>
+                <br/>
+                <%= link_to 'Products', products_path, :class => "#{'selected' if @tab=='products'}" %>
+                <br/>
+                <%= link_to 'Listings', listings_path, :class => "#{'selected' if @tab=='listings'}" %>
+                <br/>
+                <%= link_to 'Orders', orders_path, :class => "#{'selected' if @tab=='orders'}" %>
+                <br/>
+            <% else %>
+                <% if current_user.type=="Vendor" %>
+                    <%= link_to 'Dashboard', {:controller => "vendors", :action => "dashboard"}, :class => "#{'selected' if @tab=='dashboard'}" %>
+
+                <% else %>
+                    <%= link_to 'Dashboard', {:controller => "users", :action => "dashboard"}, :class => "#{'selected' if @tab=='dashboard'}" %>
+                <% end %>
+                <br/>
+                <%= link_to 'My Account', {:controller => "users", :action => "show"}, :class => "#{'selected' if @tab=='account'}" %>
+                <br/>
+                <%= link_to 'My Past Purchases', {:controller => "users", :action => "purchase_history"}, :class => "#{'selected' if @tab=='purchases'}" %>
+                <br/>
+
+                <% if current_user.type=="Vendor" %>
+                    <%= link_to 'My Listings', {:controller => "vendors", :action => "mylistings"}, :class => "#{'selected' if @tab=='mylistings'}" %>
+                    <br/>
+                <% else %>
+                    <%= link_to 'My Guest List', {:controller => "guests", :action => "index"}, :class => "#{'selected' if @tab=='guestlist'}" %>
+                    <br/>
+                    <%= link_to 'My To-Do List', {:controller => "todos", :action => "index"}, :class => "#{'selected' if @tab=='todos'}" %>
+                    <br/>
+                    <%= link_to 'My Favourite Listings', {:controller => "favourite_listings", :action => "index"}, :class => "#{'selected' if @tab=='favourites'}" %>
+                    <br/>
+                    <%= link_to 'My Moodboard', {:controller => "inspirations", :action => "index"}, :class => "#{'selected' if @tab=='moodboard'}"  %>
+                    <br/>
+                    <%= link_to 'My Email Reminders', {:controller => "site", :action => "coming_soon"}  %>
+                    <br/>
+                    <%= link_to 'My Budget',{:controller => "site", :action => "coming_soon"} %>
+                <% end %>
+            <% end %>
+        <% else %>
+            <%= link_to "Vendor Registration", :controller => "vendors", :action => "new" %>
+            <%= link_to "User Registration", new_user_path %>
+        <% end %>
+        <% if @cart %>
+            <%= hidden_div_if(@cart.line_items.empty?, id: 'cart') do %>
+                <%= render @cart %>
+            <% end %>
+        <% end %>
+      </div>
+      <div id="main">
+        <%= yield %>
+      </div>
+    </div>
+    <div id="page_footer">
+      <div id="footer_left">
+        <h3>Connect with us:</h3>
+        <%= link_to(
+                    image_tag("facebook.png",
+                              alt: "Facebook icon",
+                              name: "follow_icon",
+                              class: "follow_icon", src: "/assets/images/facebook.png",
+                              :size => '45x45'),
+                    "http://www.facebook.com",
+                    title: "Facebook") %>
+        <%= link_to(
+                    image_tag("twitter.png",
+                              alt: "Twitter icon",
+                              name: "follow_icon",
+                              class: "follow_icon", src: "/assets/images/twitter.png",
+                              :size => '45x45'),
+                    "http://www.twitter.com",
+                    title: "Twitter") %>
+
+        <%= link_to(
+                    image_tag("googleplus.png",
+                              alt: "Google+ icon",
+                              name: "follow_icon",
+                              class: "follow_icon", src: "/assets/images/googleplus.png",
+                              :size => '45x45'),
+                    "http://www.googleplus.com",
+                    title: "Google+") %>
+
+        <%= link_to(
+                    image_tag("email.png",
+                              alt: "Email icon",
+                              name: "follow_icon",
+                              class: "follow_icon", src: "/assets/images/email.png",
+                              :size => '45x45'),
+                    "mailto:emarciniak78@gmail.com",
+                    title: "Email") %>
+      </div>
+      <div id="footer_right">
+        <p id="ftop"><%= link_to "About us", {:controller => "site", :action => "coming_soon"} %> | <%= link_to "Testimonials", {:controller => "site", :action => "coming_soon"}%>
+          | <%= link_to"Careers", {:controller => "site", :action => "coming_soon"}%>  | <%= link_to "Contact us", {:controller => "site", :action => "coming_soon"}%>
+          | <%= link_to "General FAQ", {:controller => "site", :action => "coming_soon"} %> </p>
+
+        <p id="fbottom">Designed by Ewa Marciniak | Copyright © 2012 Eternally Yours: Your Wedding Planner | All Rights
+          Reserved </p>
+      </div>
+      <%= yield :scripts %>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,13 @@
+<%= semantic_form_for @inspiration do |f| %>
+  <%= f.inputs do %>
+        <%= f.input :image %>
+        <%= f.input :title %>
+        <%= f.input :notes %>
+        <%= f.input :website_url %>
+  <% end %>
+
+  <%= f.actions do %>
+    <%= f.action :submit, :as => :input %>
+  <% end %>
+<% end %>
+

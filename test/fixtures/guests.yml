@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  first_name: MyString
+  last_name: MyString
+  invitation_sent: false
+  rsvp: MyString
+  relationship: MyString
+  spec_food_req: MyString
+
+two:
+  title: MyString
+  first_name: MyString
+  last_name: MyString
+  invitation_sent: false
+  rsvp: MyString
+  relationship: MyString
+  spec_food_req: MyString

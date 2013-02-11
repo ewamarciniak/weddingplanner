@@ -1,0 +1,30 @@
+<div class="wedding_planner_form">
+  <% if notice %>
+      <p class="notification notice">
+        <%= notice %>
+      </p>
+  <% end %>
+
+  <% if alert %>
+      <p class="notification alert">
+        <%= alert %>
+      </p>
+  <% end %>
+
+  <%= semantic_form_for @guest do |f| %>
+      <%= f.inputs do %>
+          <%= f.input :title, :as => :select, :collection => ["Mr.", "Mrs.", "Ms.", "Miss", "Dr.", "Rev."] %>
+          <%= f.input :first_name %>
+          <%= f.input :last_name %>
+          <%= f.input :invitation_sent, :as => :date_picker, :label => "-Invitation sent", :start_year => (Date.today.year-3), :end_year => (Date.today.year)  %>
+          <%= f.input :rsvp, :as=>:select, :collection =>["accepted", "declined", "not received"], prompt: 'Please select' %>
+          <%= f.input :relationship, :as=>:select, :collection =>["Bride's friend", "Groom's friend", "Bride's family", "Groom's family"], prompt: 'Please select'%>
+          <%= f.input :spec_food_req, :label => "Special Food Requirements", :as=>:select, :collection =>["not confirmed", "none", "Vegetarian", "Vegan", "Coeliac", "Dairy-free", "Diabetic", "Gluten intolerant", "Kosher" ], prompt: 'Please select'%>
+
+      <% end %>
+
+      <%= f.actions do %>
+          <%= f.action :submit, :as => :input %>
+      <% end %>
+  <% end %>
+</div>

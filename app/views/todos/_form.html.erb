@@ -1,0 +1,24 @@
+<div class="wedding_planner_form">
+  <% if notice %>
+      <p class="notification notice">
+        <%= notice %>
+      </p>
+  <% end %>
+
+  <% if alert %>
+      <p class="notification alert">
+        <%= alert %>
+      </p>
+  <% end %>
+
+  <%= semantic_form_for @todo do |f| %>
+      <%= f.inputs do %>
+          <%= f.input :description %>
+          <%= f.input :completed %>
+      <% end %>
+
+      <%= f.actions do %>
+          <%= f.action :submit, :as => :input %>
+      <% end %>
+  <% end %>
+</div>

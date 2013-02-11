@@ -1,0 +1,98 @@
+/* INLINE HINTS
+--------------------------------------------------------------------------------------------------*/
+.formtastic legend {
+    color: #666;
+    margin: 0.5em 0 1em 0;
+    font-weight: bold;
+}
+.formtastic .input .inline-hints {
+    color: #666;
+    margin: 0.5em 0 0 25%;
+
+}
+
+form.formtastic fieldset ol li p.inline-hints {
+    font-style: italic;
+    font-size: 11px;
+    padding-right: 2em;
+    padding-left: 0.7em;
+}
+
+/* THE LEGENDS
+-----------------------------------------*/
+
+
+/* STRING, NUMERIC, PASSWORD, EMAIL, URL, PHONE, SEARCH (ETC) OVERRIDES
+--------------------------------------------------------------------------------------------------*/
+.formtastic .stringish input {
+    width: 50%;
+}
+
+.formtastic .stringish input[size] {
+    width: auto;
+    max-width: 50%;
+}
+
+/* TEXTAREA OVERRIDES
+--------------------------------------------------------------------------------------------------*/
+.formtastic .text textarea {
+    width: 50%;
+}
+
+.formtastic .text textarea[cols] {
+    width: auto;
+    max-width: 50%;
+}
+
+/* HIDDEN OVERRIDES
+--------------------------------------------------------------------------------------------------*/
+.formtastic .hidden {
+    display: none;
+}
+
+/* LEFT ALIGNED LABELS
+--------------------------------------------------------------------------------------------------*/
+.formtastic .input .label {
+    display: block;
+    width: 25%;
+    float: left;
+    padding-top: .2em;
+    padding-right: 0.7em;
+}
+
+/* SUBMIT BUTTON
+--------------------------------------------------------------------------------------------------*/
+
+.formtastic .button_action button {
+    padding: 3px 8px;
+    margin: 0.7em
+}
+
+/* RED STAR
+----------------------------------------*/
+.formtastic abbr,
+.formtastic acronym {
+    border: 0;
+    font-variant: normal;
+    color: red;
+}
+
+/* INLINE ERRORS
+--------------------------------------------------------------------------------------------------*/
+.formtastic .inline-errors {
+    color: red;
+    margin: 0.3em 0 0 26%;
+}
+
+.formtastic .errors {
+    color: red;
+    margin: 0.3em 0 0 26%;
+    list-style: square;
+}
+
+.formtastic .errors li {
+    padding: 0;
+    border: none;
+    display: list-item;
+}
+

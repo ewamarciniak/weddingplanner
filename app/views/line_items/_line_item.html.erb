@@ -1,0 +1,20 @@
+<% if line_item == @current_item %>
+<tr class="current_item">
+<% else %>
+<tr>
+<% end %>
+
+  <td rowspan="2" class="narrow_cell"><%= line_item.quantity %>&times;</td>
+<td rowspan="2" class="remove"><%= button_to '-', decrement_line_item_path(line_item), method: :put, remote: true %></td>
+  <td class="cart_center" ><%= line_item.product.title %>:</td>
+  <td class="item_price" rowspan="2"><%= number_to_currency(line_item.total_price, {:unit => "&euro;", :separator => ".", :delimiter => ","}) %></td>
+</tr>
+<% if line_item == @current_item %>
+<tr class="current_item">
+
+  <% else %>
+<tr>
+  <% end %>
+
+  <td><%= line_item.product.issue %></td>
+</tr>

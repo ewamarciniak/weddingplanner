@@ -1,0 +1,50 @@
+<div class="external_wedding_planner_form">
+  <h1>Moodboard</h1>
+
+  <% if notice %>
+      <p class="notification notice">
+        <%= notice %>
+      </p>
+  <% end %>
+
+  <% if alert %>
+      <p class="notification alert">
+        <%= alert %>
+      </p>
+  <% end %>
+
+  <% if (@inspirations) %>
+      <% if (@inspirations.empty?) %>
+          <p>You haven't added any inspirations to your Moodboard yet.</p>
+          <%= link_to 'Add an Inspiration', new_inspiration_path %>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+      <% else %>
+          <%= link_to 'Add an Inspiration', new_inspiration_path %>
+          <br/>
+          <br/>
+          <div id="inspirations"data-update-url="<%= sort_inspirations_url %>">
+            <% @inspirations.each do |inspiration| %>
+                <%= content_tag_for :div, inspiration do %>
+                    <span class="handle">[drag]</span>
+                    <%= image_tag inspiration.image.url(:regular) %>
+                    <br />
+                    <%= inspiration.title %>
+                    <br />
+                    <%= link_to 'Show', inspiration %>
+                    |
+                    <%= link_to 'Edit', edit_inspiration_path(inspiration) %>
+                    |
+                    <%= link_to 'Remove', inspiration, method: :delete, data: { confirm: 'Are you sure?' } %>
+                <% end %>
+            <% end %>
+          </div>
+      <% end %>
+  <% end %>
+</div>
+
+

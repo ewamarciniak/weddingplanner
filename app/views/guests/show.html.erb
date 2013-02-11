@@ -1,0 +1,55 @@
+<div class="wedding_planner_form">
+  <% if notice %>
+      <p class="notification notice">
+        <%= notice %>
+      </p>
+  <% end %>
+
+  <% if alert %>
+      <p class="notification alert">
+        <%= alert %>
+      </p>
+  <% end %>
+
+  <table class="show">
+    <% if current_user.admin %>
+        <tr>
+          <th>Title:</th>
+          <td><%= @guest.title %> </td>
+        </tr>
+    <% end %>
+
+    <tr>
+      <th>First name:</th>
+      <td><%= @guest.first_name %> </td>
+    </tr>
+    <tr>
+      <th>Last name:</th>
+      <td><%= @guest.last_name %></td>
+    </tr>
+    <tr>
+      <th>Invitation sent:</th>
+      <td> <%= @guest.invitation_sent %></td>
+    </tr>
+
+    <tr>
+      <th>RSVP:</th>
+      <td><%= @guest.rsvp %> </td>
+    </tr>
+
+    <tr>
+      <th>Relationship:</th>
+      <td><%= @guest.relationship %> </td>
+    </tr>
+
+    <tr>
+      <th>Spec food req:</th>
+      <td><%= @guest.spec_food_req %></td>
+    </tr>
+  </table>
+
+
+
+  <%= link_to 'Edit', edit_guest_path(@guest) %> |
+  <%= link_to 'Back', guests_path %>
+</div>

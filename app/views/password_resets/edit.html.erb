@@ -1,0 +1,23 @@
+<div class="wedding_planner_form">
+  <h1> Reset Password</h1>
+    <%= semantic_form_for @user, :url => password_reset_path(params[:id]) do |f| %>
+      <% if @user.errors.any? %>
+          <div class="error_messages">
+            <h2>Form is invalid</h2>
+            <ul>
+              <% for message in @user.errors.full_messages %>
+                  <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+
+      <%= f.inputs do %>
+          <%= f.input :password, :hint => "Password has to unique and contain 6-15 characters" %>
+          <%= f.input :password_confirmation, :hint => "Please re-enter the password" %>
+      <% end %>
+      <%= f.actions do %>
+          <%= f.action :submit, :as => :button, :label => "Update Password" %>
+      <% end %>
+  <% end %>
+</div>

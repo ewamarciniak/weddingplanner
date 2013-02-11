@@ -1,0 +1,10 @@
+<%= semantic_form_for @favourite_listing do |f| %>
+  <%= f.inputs do %>
+    <%= f.input :listing_id %>
+    <%= f.input :user_id %>
+  <% end %>
+
+  <%= f.actions do %>
+    <%= f.action :submit, :as => :input %>
+  <% end %>
+<% end %>

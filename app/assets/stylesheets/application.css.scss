@@ -1,0 +1,426 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require jquery.ui.datepicker
+ *= require formtastic
+ *= require my_formtastic_changes
+ *= require formtastic_ie6
+ *= require formtastic_ie7
+ *= require sessions
+ *= require products
+ *= require store
+ *= require listings
+ *= require directory
+ *= require users
+ *= require vendors
+ *= require guests
+ *= require admin
+ *= require carts
+ *= require orders
+ *= require favourite_listings
+ *= require notifications
+ *=require gmaps4rails
+*/
+
+body {
+  padding: 0;
+  margin: 0;
+  background-color: #fff;
+  font-family: verdana, arial, helvetica, sans-serif;
+
+}
+
+h1 {
+  font-size: 140%;
+}
+
+h2 {
+  font-size: 100%;
+  background-color: #958d51;
+  color: white;
+  padding: 5px;
+}
+
+p, ol, ul, td {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 0.9em;
+  line-height: 1.3em;
+}
+
+h1, h3, h4, h5, h6, p, ol, ul, td {
+  color: #666;
+}
+
+#bg {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -9999;
+}
+
+#page_footer {
+  a {
+    &:visited {
+      color: #2f8ed7;
+      text-decoration: underline;
+    }
+  }
+}
+
+a {
+  &:link {
+    color: #42413C;
+    text-decoration: none;
+  }
+  &:visited {
+    color: #2f8ed7;
+    text-decoration: underline;
+  }
+  &:hover {
+    color: #7f6b33;
+  }
+
+  &:hover, &:active, &:focus {
+    text-decoration: none;
+  }
+
+  img {
+    border: none;
+  }
+}
+
+.central {
+  width: 960px;
+  margin: 0 auto;
+  padding: 0;
+  background-color: red;
+}
+
+.empty {
+  display: block;
+  height: 30px;
+  background: white;
+  clear: left;
+  width: 960px;
+  margin: 0 auto;
+  padding: 0
+
+}
+
+.follow_icon {
+  padding: 5px;
+}
+
+pre {
+  background-color: #eee;
+  padding: 10px;
+  font-size: 11px;
+}
+
+#container_center {
+  width: 960px;
+  margin: 0 auto;
+  padding: 0;
+  #banner {
+    background: red;
+    padding: 0;
+    font: small-caps 15px/10px "Century gothic", Arial;
+    color: #000;
+    text-align: center;
+
+    #banner_left {
+      float: left;
+
+      #insert_logo {
+        display: block;
+        padding: 10px 0;
+        border: 0px;
+        background: #FFF;
+      }
+    }
+    #banner_right {
+      width: 580px;
+      float: left;
+      text-align: right;
+      padding: 20px 20px 0 0;
+      margin: 0;
+    }
+
+    /*Navigation
+    ------------------------------------------*/
+    #menu {
+      margin: 0;
+      padding: 0;
+      float: right;
+      width: 960px;
+      background: #ccc488;
+      margin-bottom: 20px;
+
+      #navigation {
+
+        list-style: none;
+        float: left;
+        margin: 0;
+        font-size: 90%;
+        background: #ccc488;
+
+        ul {
+          list-style: none;
+          background: #ccc488;
+          padding: 1px;
+          margin: 0px;
+          width: auto;
+          font-size: 110%;
+
+          li {
+            a {
+              color: white;
+              font-weight: 900;
+            }
+          }
+        }
+
+        >li {
+          float: left;
+
+          font-weight: 900;
+          > a {
+            color: white;
+            font-weight: 900;
+            text-decoration: none;
+          }
+        }
+        li {
+          color: #2f8ed7;
+
+          a {
+            display: block;
+            height: 2em;
+            line-height: 2em;
+            padding: 0.3em 2em 0.3em 2em;
+            text-decoration: none;
+            text-transform: uppercase;
+            background-color: #ccc488;
+          }
+
+          text-transform: uppercase;
+          padding-top: 0em;
+          line-height: 2em;
+
+        }
+        ul {
+          position: absolute;
+          display: none;
+          z-index: 999;
+
+          li {
+            a {
+              width: 150px;
+              text-align: left;
+              font-size: 0.8em;
+            }
+            li:hover a {
+              background: #e4e0c4;
+              color: #958d51;
+              font-weight: 900;
+            }
+          }
+        }
+
+        li:hover {
+          ul {
+            display: block;
+          }
+
+          > a {
+            background: #e4e0c4;
+            color: #958d51;
+            font-weight: 900;
+          }
+        }
+      }
+    }
+  }
+  #columns1 {
+    background: #E4F4F4;
+    clear: both;
+  }
+
+  #columns {
+    background: #E4F4F4;
+    clear: both;
+
+    #main {
+      margin-left: 215px;
+      padding: 0 0 0 30px;
+      background: white;
+      background-color: #e4f4f4;
+      margin-bottom: 0;
+      overflow: auto;
+
+      #notice {
+        color: #000 !important;
+        border: 2px solid red;
+        padding: 1em;
+        margin-bottom: 2em;
+        background-color: #FFF;
+        font: bold smaller sans-serif;
+        text-align: center;
+      }
+    }
+    #side {
+      clear: left;
+      float: left;
+      padding: 20px 20px;
+      width: 175px;
+      background: #E4F4F4;
+      margin-bottom: 0;
+
+      form, div {
+        display: inline;
+      }
+
+      input {
+        font-size: small;
+      }
+      ul {
+        padding: 0;
+
+        li {
+          list-style: none;
+
+          a {
+            color: #000;
+            font-size: small;
+          }
+        }
+      }
+    }
+  }
+
+  #page_footer {
+    padding: 0px 0px 20px 0;
+    margin: 20px auto 0;
+    width: 960px;
+    position: relative; /* this gives IE6 hasLayout to properly clear */
+    clear: both;
+    height: 100px;
+    color: white;
+    background: #ccc488;
+
+    #footer_left {
+      width: 250px;
+      float: left;
+      font-size: 90%;
+      background: #ccc488;
+      padding-left: 25px;
+
+    }
+
+    #footer_right {
+      width: 630px;
+      float: left;
+      margin-left: 25px;
+      padding-top: 35px;
+      background: #ccc488;
+
+      #ftop {
+        padding: 0px;
+        a:link {
+          color: white;
+          font-weight: 900;
+        }
+      }
+      #fbottom {
+        padding: 0px;
+        font-size: 0.7em;
+        p {;
+          font-weight: normal;
+        }
+      }
+    }
+  }
+
+}
+
+.wedding_planner_form, .wedding_planner_form1 {
+  padding: 20px 40px;
+}
+
+.external_wedding_planner_form {
+  padding: 20px 20px 20px 0;
+  background-color: #E4F4F4;
+}
+
+.emphasis_blue {
+  color: #2a94fe;
+  font-weight: 600;
+}
+
+#container_center #banner #menu #navigation li a.selected,
+#container_center #columns #side a.selected  {
+  color: #7f6b33;
+  font-weight: 700;
+
+}
+p.required {
+  color: red;
+  font-style: italic;
+}
+
+.image, .contact_details {
+  float:left;
+}
+
+.contact_details {
+  padding-left: 20px;;
+}
+.clear {
+  clear:left;
+}
+h3.heading_show {
+  font-size: 1em;
+  padding-top:0;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+.wider h2 {
+  width:200px;
+}
+h1.markers {
+   font-size: 0.9em;
+  color: #7f6b33;
+  padding:0;
+  margin:0;
+ }
+
+h2.markers {
+  font-size: 0.7em;
+  background:none;
+  color: #666;
+  padding-top:0;
+  padding-left:0;
+}
+#inspirations div {float:left; padding: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  background: white;
+  max-width: 300px;
+  word-wrap: break-word;}
+
+#inspirations .handle {
+  font-size: 12px;
+  color: #666;
+  cursor: move;
+  margin-bottom:50px;
+}

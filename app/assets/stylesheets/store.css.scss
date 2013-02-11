@@ -1,0 +1,68 @@
+// Place all the styles related to the Store controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.store {
+
+  table.entry{
+    margin: 0 0 25px 0;
+    padding: 0px;
+    border-collapse: collapse;
+    width: 230px;
+    display: block;
+    float: left;
+    overflow: hidden;
+
+  td, th {
+    padding: 2px 10px;
+    border: none;
+    text-align: left;
+  }
+  td {
+    font-size: 0.8em;
+    th {
+      font-size: 1em;
+    }
+  }
+  td a {
+    color: #444;
+    text-decoration: none;
+    text-align: right;
+  }
+  td a, th a {
+    display: block;
+    width: 100%;
+  }
+  td a:hover {
+    background: #FFF;
+    color: #FFF;
+  }
+  tfoot th {
+    text-align: right;
+  }
+  tr {
+    font-size: 15px;
+    background: #fff;
+    color: #666;
+  }
+  tr:hover {
+    background: #FFF;
+  }
+  td.price {
+    font-weight: 800;
+    padding-bottom: 15px;
+    padding-right: 0;
+  }
+  td.image_store {
+    padding: 10px 10px 0 10px;
+  }
+
+  td.store_entry_bottom {
+    padding-bottom: 10px;
+    text-align: right;
+  }
+}
+}
+
+
+

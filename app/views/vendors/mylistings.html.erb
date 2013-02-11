@@ -1,0 +1,59 @@
+<!--@reference: http://stackoverflow.com/questions/3702256/ruby-rails-conditional-search-method-if-else-no-results-found accessed 28/12/2012-->
+<div class="external_wedding_planner_form">
+  <h1> My Listings</h1>
+  <% if notice %>
+      <p class="notification notice">
+        <%= notice %>
+      </p>
+  <% end %>
+  <% if alert %>
+      <p class="notification alert">
+        <%= alert %>
+      </p>
+  <% end %>
+  <% if (@mylistings) %>
+      <% if (@mylistings.empty?) %>
+          <p>You haven't added any listings yet.</p>
+          <%= link_to 'Create a Listing', new_listing_path %>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+      <% else %>
+          <div class="field">
+            <% @mylistings.each do |mylistings| %>
+                <%= link_to(mylistings) do %>
+                    <table class="entry">
+                      <tr>
+                        <td rowspan="4"><%= image_tag (mylistings.picture.url(:medium)) %></td>
+                        <th class="business_directory"><%= mylistings.business_name %></th>
+                        <td class="votes" id="num">
+                          <%= pluralize mylistings.sum_of_votes, "vote" %>  </td>
+                      </tr>
+                      <tr>
+                        <td class="category"><%= mylistings.category %></td>
+                        <td class="votes" id="up">
+                          <%= link_to "up", vote_listing_path(mylistings, value: 1), method: "post" %>
+                          | <%= link_to "down", vote_listing_path(mylistings, value: -1), method: "post" %>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><%= mylistings.address %></td>
+
+                        <td><%= button_to 'Delete Listing', mylistings, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+
+
+                      </tr>
+                      <tr>
+                        <td colspan="2"><%= truncate(strip_tags(mylistings.description),
+                                                     :length => 160) %></td>
+                      </tr>
+                    </table>
+                <% end %>
+            <% end %>
+            <%= link_to 'Create a Listing', new_listing_path %>
+          </div>
+      <% end %>
+  <% end %>
+</div>

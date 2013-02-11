@@ -1,0 +1,48 @@
+.products {
+  table {
+    margin: 0 0 20px 0;
+    padding: 0px;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  td, th {
+    padding: 10px;
+    border-bottom: 1px solid #aecaff;
+  }
+  td a {
+    color: #444;
+    text-decoration: none;
+    text-align: right;
+  }
+  td a, th a {
+    display: block;
+    width: 100%;
+    color: #b9916c
+  }
+  td a:hover {
+    background: #444;
+    color: #FFF;
+  }
+  tfoot th {
+    text-align: right;
+  }
+  th {
+    text-align: left;
+  }
+  thead tr, tfoot tr {
+    color: #555;
+    font-size: 0.8em;
+  }
+  tr {
+    font: 12px sans-serif;
+    background: #fff;
+    color: #666;
+  }
+  tr:hover {
+    background: #FFF;
+  }
+  td.tripple_row {
+    border-left: 1px solid #e4eaff;
+    font-weight: 700;
+  }
+}

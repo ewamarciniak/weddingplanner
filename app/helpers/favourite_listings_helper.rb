@@ -1,0 +1,2 @@
+module FavouriteListingsHelper
+end

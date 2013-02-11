@@ -1,0 +1,55 @@
+<!--@reference: http://stackoverflow.com/questions/3702256/ruby-rails-conditional-search-method-if-else-no-results-found accessed 28/12/2012-->
+<div class="external_wedding_planner_form">
+  <h1> Wedding directory</h1>
+  <% if notice %>
+      <p class="notification notice">
+        <%= notice %>
+      </p>
+  <% end %>
+  <% if alert %>
+      <p class="notification alert">
+        <%= alert %>
+      </p>
+  <% end %>
+  <%= gmaps4rails(@json) %>
+  <h3> Search directory</h3>
+  <%= search_form_for @q, url: directory_path, method: :get do |f| %>
+      <%= f.condition_fields do |c| %>
+          <%= render "condition_fields", f: c %>
+      <% end %>
+      <p><%= link_to_add_fields "Add Conditions", f, :condition %></p>
+
+      <div class="actions"><%= f.submit "Search" %></div>
+  <% end %>
+  <div class="field">
+    <% @listings.each do |listing| %>
+        <%= link_to(listing) do %>
+            <table class="entry">
+              <tr>
+                <td rowspan="4"><%= image_tag (listing.picture.url(:medium)) %></td>
+                <th class="business_directory"><%= listing.business_name %></th>
+                <td class="votes" id="num">
+                  <%= pluralize listing.sum_of_votes, "vote" %>  </td>
+              </tr>
+              <tr>
+                <td class="category"><%= listing.category %></td>
+                <td class="votes" id="up">
+                  <%= link_to "up", vote_listing_path(listing, value: 1), method: "post" %>
+                  | <%= link_to "down", vote_listing_path(listing, value: -1), method: "post" %>
+
+                </td>
+              </tr>
+              <tr>
+                <td><%= listing.address %></td>
+                <td class="add_to"><%= button_to 'Add to Favourites', favourite_listings_path(listing_id: listing) %></td>
+
+              </tr>
+              <tr>
+                <td colspan="2"><%= truncate(strip_tags(listing.description),
+                                             :length => 160) %></td>
+              </tr>
+            </table>
+        <% end %>
+    <% end %>
+  </div>
+</div>

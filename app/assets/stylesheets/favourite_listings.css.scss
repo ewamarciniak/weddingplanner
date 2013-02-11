@@ -1,0 +1,72 @@
+// Place all the styles related to the Directory controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.favourite_listings {
+  table {
+    margin: 0 0 15px 0;
+    padding: 0px;
+    border-collapse: collapse;
+    width: 100%;
+    display: block;
+    float: left;
+    height: 210px;
+    overflow: hidden;
+  }
+  td, th {
+    padding: 10px 10px;
+    border: none;
+    text-align: left;
+    min-width: 200px;
+  }
+  td {
+    font-size: 0.8em;
+  }
+  th {
+    font-size: 1.2em;
+  }
+
+  td a {
+    color: #3185e4;
+    text-decoration: none;
+  }
+  td a, th a {
+    width: 100%;
+  }
+  td a:hover {
+    color: #ccc488;
+    background: #fff;
+  }
+  tr {
+    font-size: 15px;
+    background: #fff;
+    color: #666;
+  }
+  tr:hover {
+    background: #FFF;
+  }
+
+  td#num {
+    width: 70px;
+    font-weight: 800;
+    text-align: center;
+    padding-top: 15px;
+    padding-right: 10px;
+    padding-bottom: 0px;
+  }
+  td#up {
+    vertical-align: top;
+    text-align: center;
+    padding-right: 10px;
+
+  }
+  .business_directory {
+    padding-bottom: 0px;
+    margin-bottom: 0;
+  }
+  td.category {
+    font-style: italic;
+    padding-top: 0px;
+    color: #8d8965;
+  }
+}
+

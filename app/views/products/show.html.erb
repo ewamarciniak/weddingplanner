@@ -1,0 +1,42 @@
+<div class="wedding_planner_form">
+  <h1>Product</h1>
+<%# START:notifications %>
+
+  <% if notice %>
+      <p class="notification notice">
+        <%= notice %>
+      </p>
+  <% end %>
+
+  <% if alert %>
+      <p class="notification alert">
+        <%= alert %>
+      </p>
+  <% end %>
+<%# END:notifications %>
+  <table>
+    <tr>
+      <th>Product ID:</th>
+      <td><%= @product.id %></td>
+    </tr>
+    <tr>
+      <th>Image:</th>
+      <td><%= image_tag @product.picture.url(:medium) %></td>
+    </tr>
+    <tr>
+      <th>Title:</th>
+      <td><%= @product.title %>  </td>
+    </tr>
+    <tr>
+      <th>Price:</th>
+      <td><%= number_to_currency(@product.price, {:unit => "&euro;", :separator => ".", :delimiter => ","}) %> </td>
+    </tr>
+    <tr>
+      <th>Issue:</th>
+      <td><%= @product.issue %> </td>
+    </tr>
+  </table>
+
+  <%= link_to 'Edit', edit_product_path(@product) %> |
+  <%= link_to 'Back', products_path %>
+</div>

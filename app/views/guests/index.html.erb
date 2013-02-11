@@ -1,0 +1,67 @@
+<div class="wedding_planner_form">
+  <% if notice %>
+      <p class="notification notice">
+        <%= notice %>
+      </p>
+  <% end %>
+
+  <% if alert %>
+      <p class="notification alert">
+        <%= alert %>
+      </p>
+  <% end %>
+  <h1>Guest list</h1>
+
+  <% if @guests.empty? %>
+      <p>You have no guests on your Guest List yet.</p>
+      <%= link_to 'Add a Guest', new_guest_path %>
+      <br />
+      <br />
+      <br />
+  <% else %><%= link_to 'Add a Guest', new_guest_path %> | <%= link_to "Printable Guest List (PDF)", guests_path(format: "pdf") %>
+      <p>PLEASE NOTE: Adobe Reader is required to view the PDF version of your Guestlist.
+        If you don´t have Adobe Reader, please <%= link_to "Click here", 'http://www.adobe.com/ie/products/reader.html' %> to download it.</p>
+      <br/>
+      <br/>
+
+      <table>
+        <tr>
+          <% if current_user.admin %>
+              <th>User ID</th>
+          <% end %>
+          <th>Title</th>
+          <th>Name</th>
+          <th>Invitation sent</th>
+          <th>RSVP</th>
+          <th>Relationship</th>
+          <th>Special food requirements</th>
+          <th>Actions</th>
+        </tr>
+
+        <% @guests.each do |guest| %>
+            <tr>
+              <% if current_user.admin %>
+                  <td rowspan="3"><%= guest.user.id unless guest.user.nil? %></td>
+              <% end %>
+              <th rowspan="3"><%= guest.title %></th>
+              <th rowspan="3"><%= guest.first_name %> <%= guest.last_name %></th>
+              <td rowspan="3"><%= guest.invitation_sent %></td>
+              <td rowspan="3"><%= guest.rsvp %></td>
+              <td rowspan="3"><%= guest.relationship %></td>
+              <td rowspan="3"><%= guest.spec_food_req %></td>
+              <td class="tripple_row"><%= link_to 'Show', guest %></td>
+            </tr>
+            <tr>
+              <td class="tripple_row"><%= link_to 'Edit', edit_guest_path(guest) %></td>
+            </tr>
+            <tr>
+              <td class="tripple_row"><%= link_to 'Delete', guest, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+            </tr>
+        <% end %>
+
+
+      </table>
+  <% end %>
+  <br/>
+
+</div>
