@@ -42,7 +42,7 @@ class ListingsController < ApplicationController
 
   # GET /listings/1/edit
   def edit
-    @listing = Listing.find(params[:id])
+    @listing = get_listing(params[:id])
   end
 
   # POST /listings
@@ -64,7 +64,7 @@ class ListingsController < ApplicationController
   # PUT /listings/1
   # PUT /listings/1.json
   def update
-    @listing = Listing.find(params[:id])
+    @listing = get_listing(params[:id])
 
     respond_to do |format|
       if @listing.update_attributes(params[:listing])
@@ -80,7 +80,7 @@ class ListingsController < ApplicationController
   # DELETE /listings/1
   # DELETE /listings/1.json
   def destroy
-    @listing = Listing.find(params[:id])
+    @listing = get_listing(params[:id])
     @listing.destroy
 
     respond_to do |format|
@@ -101,5 +101,10 @@ class ListingsController < ApplicationController
     else
       redirect_to :back, alert: "Unable to vote, perhaps you already did."
     end
+  end
+
+  private
+  def get_listing(listing_id)
+    Listing.find(listing_id)
   end
 end

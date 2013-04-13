@@ -15,7 +15,7 @@ class OrdersController < ApplicationController
   # GET /orders/1
   # GET /orders/1.json
   def show
-    @order = Order.find(params[:id])
+    @order = get_order(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -41,7 +41,7 @@ class OrdersController < ApplicationController
 
   # GET /orders/1/edit
   def edit
-    @order = Order.find(params[:id])
+    @order = get_order(params[:id])
   end
 
   # POST /orders
@@ -68,7 +68,7 @@ class OrdersController < ApplicationController
   # PUT /orders/1
   # PUT /orders/1.json
   def update
-    @order = Order.find(params[:id])
+    @order = get_order(params[:id])
 
     respond_to do |format|
       if @order.update_attributes(params[:order])
@@ -84,12 +84,17 @@ class OrdersController < ApplicationController
   # DELETE /orders/1
   # DELETE /orders/1.json
   def destroy
-    @order = Order.find(params[:id])
+    @order = get_order(params[:id])
     @order.destroy
 
     respond_to do |format|
       format.html { redirect_to orders_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+  def get_order(order_id)
+    Order.find(order_id)
   end
 end

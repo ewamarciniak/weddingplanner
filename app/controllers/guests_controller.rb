@@ -25,7 +25,7 @@ class GuestsController < ApplicationController
   # GET /guests/1
   # GET /guests/1.json
   def show
-    @guest = Guest.find(params[:id])
+    @guest = get_guest(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -46,7 +46,7 @@ class GuestsController < ApplicationController
 
   # GET /guests/1/edit
   def edit
-    @guest = Guest.find(params[:id])
+    @guest = get_guest(params[:id])
   end
 
   # POST /guests
@@ -69,7 +69,7 @@ class GuestsController < ApplicationController
   # PUT /guests/1
   # PUT /guests/1.json
   def update
-    @guest = Guest.find(params[:id])
+    @guest = get_guest(params[:id])
 
     respond_to do |format|
       if @guest.update_attributes(params[:guest])
@@ -85,12 +85,17 @@ class GuestsController < ApplicationController
   # DELETE /guests/1
   # DELETE /guests/1.json
   def destroy
-    @guest = Guest.find(params[:id])
+    @guest = get_guest(params[:id])
     @guest.destroy
 
     respond_to do |format|
       format.html { redirect_to guests_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+  def get_guest(guest_id)
+    Guest.find(guest_id)
   end
 end

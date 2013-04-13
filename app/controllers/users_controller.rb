@@ -20,9 +20,9 @@ class UsersController < ApplicationController
     @tab="account"
     if  current_user
       if current_user.admin
-        @user = User.find(params[:id])
+        @user = get_user(params[:id])
       else
-        @user = User.find(current_user.id)
+        @user = get_user(current_user.id)
       end
     end
     respond_to do |format|
@@ -45,7 +45,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @user = User.find(params[:id])
+    @user = get_user(params[:id])
   end
 
   # POST /users
@@ -78,7 +78,7 @@ class UsersController < ApplicationController
   # PUT /users/1
   # PUT /users/1.json
   def update
-    @user = User.find(params[:id])
+    @user = get_user(params[:id])
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
@@ -94,7 +94,7 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
-    @user = User.find(params[:id])
+    @user = get_user(params[:id])
     begin
       @user.destroy
       flash[:notice] = "User #{@user.login_name} deleted"
@@ -130,5 +130,10 @@ class UsersController < ApplicationController
   def purchase_history
     @tab="purchases"
     @orders = current_user.orders.all
+  end
+
+  private
+  def get_user(user_id)
+    User.find(user_id)
   end
 end

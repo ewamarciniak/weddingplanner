@@ -14,7 +14,7 @@ class InspirationsController < ApplicationController
   # GET /inspirations/1
   # GET /inspirations/1.json
   def show
-    @inspiration = Inspiration.find(params[:id])
+    @inspiration = get_inspiration(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -35,7 +35,7 @@ class InspirationsController < ApplicationController
 
   # GET /inspirations/1/edit
   def edit
-    @inspiration = Inspiration.find(params[:id])
+    @inspiration = get_inspiration(params[:id])
   end
 
   # POST /inspirations
@@ -57,7 +57,7 @@ class InspirationsController < ApplicationController
   # PUT /inspirations/1
   # PUT /inspirations/1.json
   def update
-    @inspiration = Inspiration.find(params[:id])
+    @inspiration = get_inspiration(params[:id])
 
     respond_to do |format|
       if @inspiration.update_attributes(params[:inspiration])
@@ -73,7 +73,7 @@ class InspirationsController < ApplicationController
   # DELETE /inspirations/1
   # DELETE /inspirations/1.json
   def destroy
-    @inspiration = Inspiration.find(params[:id])
+    @inspiration = get_inspiration(params[:id])
     @inspiration.destroy
 
     respond_to do |format|
@@ -87,5 +87,10 @@ class InspirationsController < ApplicationController
       Inspiration.update_all({position: index+1}, {id: id})
     end
     render nothing: true
+  end
+
+  private
+  def get_inspiration(inspiration_id)
+    Inspiration.find(inspiration_id)
   end
 end

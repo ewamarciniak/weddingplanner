@@ -16,7 +16,7 @@ class FavouriteListingsController < ApplicationController
   # GET /favourite_listings/1
   # GET /favourite_listings/1.json
   def show
-    @favourite_listing = FavouriteListing.find(params[:id])
+    @favourite_listing = get_favourite_listing(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -37,7 +37,7 @@ class FavouriteListingsController < ApplicationController
 
   # GET /favourite_listings/1/edit
   def edit
-    @favourite_listing = FavouriteListing.find(params[:id])
+    @favourite_listing = get_favourite_listing(params[:id])
   end
 
   # POST /favourite_listings
@@ -59,7 +59,7 @@ class FavouriteListingsController < ApplicationController
   # PUT /favourite_listings/1
   # PUT /favourite_listings/1.json
   def update
-    @favourite_listing = FavouriteListing.find(params[:id])
+    @favourite_listing = get_favourite_listing(params[:id])
 
     respond_to do |format|
       if @favourite_listing.update_attributes(params[:favourite_listing])
@@ -75,12 +75,17 @@ class FavouriteListingsController < ApplicationController
   # DELETE /favourite_listings/1
   # DELETE /favourite_listings/1.json
   def destroy
-    @favourite_listing = FavouriteListing.find(params[:id])
+    @favourite_listing = get_favourite_listing(params[:id])
     @favourite_listing.destroy
 
     respond_to do |format|
       format.html { redirect_to favourite_listings_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+  def get_favourite_listing(favourite_listing_id)
+    FavouriteListing.find(favourite_listing_id)
   end
 end

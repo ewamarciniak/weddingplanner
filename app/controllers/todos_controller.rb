@@ -19,7 +19,7 @@ class TodosController < ApplicationController
   # GET /todos/1
   # GET /todos/1.json
   def show
-    @todo = Todo.find(params[:id])
+    @todo = get_todo(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -40,7 +40,7 @@ class TodosController < ApplicationController
 
   # GET /todos/1/edit
   def edit
-    @todo = Todo.find(params[:id])
+    @todo = get_todo(params[:id])
   end
 
   # POST /todos
@@ -62,7 +62,7 @@ class TodosController < ApplicationController
   # PUT /todos/1
   # PUT /todos/1.json
   def update
-    @todo = Todo.find(params[:id])
+    @todo = get_todo(params[:id])
 
     respond_to do |format|
       if @todo.update_attributes(params[:todo])
@@ -78,12 +78,17 @@ class TodosController < ApplicationController
   # DELETE /todos/1
   # DELETE /todos/1.json
   def destroy
-    @todo = Todo.find(params[:id])
+    @todo = get_todo(params[:id])
     @todo.destroy
 
     respond_to do |format|
       format.html { redirect_to todos_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+  def get_todo(todo_id)
+    Todo.find(todo_id)
   end
 end

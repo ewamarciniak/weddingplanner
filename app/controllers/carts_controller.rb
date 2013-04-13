@@ -16,7 +16,7 @@ class CartsController < ApplicationController
 
   def show
     begin
-      @cart = Cart.find(params[:id])
+      @cart = get_cart(params[:id])
     rescue ActiveRecord::RecordNotFound
       logger.error "Attempt to access invalid cart #{params[:id]}"
       redirect_to store_url, alert: 'Invalid cart'
@@ -41,7 +41,7 @@ class CartsController < ApplicationController
 
   # GET /carts/1/edit
   def edit
-    @cart = Cart.find(params[:id])
+    @cart = get_cart(params[:id])
   end
 
   # POST /carts
@@ -63,7 +63,7 @@ class CartsController < ApplicationController
   # PUT /carts/1
   # PUT /carts/1.json
   def update
-    @cart = Cart.find(params[:id])
+    @cart = get_cart(params[:id])
 
     respond_to do |format|
       if @cart.update_attributes(params[:cart])
@@ -86,5 +86,10 @@ class CartsController < ApplicationController
       format.html { redirect_to store_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+  def get_cart(cart_id)
+    Cart.find(cart_id)
   end
 end

@@ -17,7 +17,7 @@ skip_before_filter :authorize, :only =>[:show]
   # GET /products/1
   # GET /products/1.json
   def show
-    @product = Product.find(params[:id])
+    @product = get_product(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -38,7 +38,7 @@ skip_before_filter :authorize, :only =>[:show]
 
   # GET /products/1/edit
   def edit
-    @product = Product.find(params[:id])
+    @product = get_product(params[:id])
   end
 
   # POST /products
@@ -62,7 +62,7 @@ skip_before_filter :authorize, :only =>[:show]
   # PUT /products/1
   # PUT /products/1.json
   def update
-    @product = Product.find(params[:id])
+    @product = get_product(params[:id])
 
     respond_to do |format|
       if @product.update_attributes(params[:product])
@@ -78,7 +78,7 @@ skip_before_filter :authorize, :only =>[:show]
   # DELETE /products/1
   # DELETE /products/1.json
   def destroy
-    @product = Product.find(params[:id])
+    @product = get_product(params[:id])
     @product.destroy
 
     respond_to do |format|
@@ -92,5 +92,10 @@ skip_before_filter :authorize, :only =>[:show]
     respond_to do |format|
       format.atom
     end
+  end
+
+private
+  def get_product(product_id)
+    Product.find(product_id)
   end
 end

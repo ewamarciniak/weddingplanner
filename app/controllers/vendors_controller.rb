@@ -18,7 +18,7 @@ class VendorsController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @vendor = Vendor.find(params[:id])
+    @vendor = get_vendor(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -40,7 +40,7 @@ class VendorsController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @vendor = Vendor.find(params[:id])
+    @vendor = get_vendor(params[:id])
   end
 
   # POST /users
@@ -65,7 +65,7 @@ class VendorsController < ApplicationController
   # PUT /users/1
   # PUT /users/1.json
   def update
-    @vendor = Vendor.find(params[:id])
+    @vendor = get_vendor(params[:id])
 
     respond_to do |format|
       if @vendor.update_attributes(params[:vendor])
@@ -81,7 +81,7 @@ class VendorsController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
-    @vendor = Vendor.find(params[:id])
+    @vendor = get_vendor(params[:id])
     @vendor.destroy
 
     respond_to do |format|
@@ -99,5 +99,10 @@ class VendorsController < ApplicationController
   def mylistings
     @tab="mylistings"
     @mylistings = current_user.listings.all
+  end
+
+  private
+  def get_vendor(vendor_id)
+    Vendor.find(vendor_id)
   end
 end
