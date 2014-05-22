@@ -4,7 +4,7 @@ class Listing < ActiveRecord::Base
   has_many :listing_votes
   has_many :favourite_listings
 
-  validates :business_name, :description, :category,:address, presence: true
+  validates :business_name, :description, :category,:address, :presence => true
   validates_attachment :picture,
                      :presence => true,
                     #:content_type => { :content_type => "image/jpg" },
@@ -45,7 +45,7 @@ class Listing < ActiveRecord::Base
   end
 
   def sum_of_votes
-    ListingVote.joins(:listing).where(listings: {id: self.id}).sum('value')
+    ListingVote.joins(:listing).where(:listings => {:id => self.id}).sum('value')
   end
 
 =begin

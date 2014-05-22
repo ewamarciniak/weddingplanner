@@ -30,7 +30,7 @@ gem "paperclip", "~> 3.4.0"
 #required by paperclip
 gem "aws-sdk", "~> 1.7.1"
 gem 'prawn'
-gem 'gmaps4rails'
+gem 'gmaps4rails', "1.5.6"
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'acts_as_list'
